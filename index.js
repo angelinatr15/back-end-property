@@ -2,12 +2,15 @@ const express = require('express')
 const cors = require('cors')
 const pool = require('./database')
 const app = express()
+const dotenv = require("dotenv")
 
+dotenv.config()
 app.use(express.json())
 app.use(cors())
-app.listen(5001, () => {
-  console.log('app listening to 5001 Muhahahaha')
+app.listen(process.env.PORT || 5001, () => {
+  console.log('Muhahahaha')
 })
+
 
 app.get('/cars', async (req, res) => {
   try {
@@ -16,7 +19,7 @@ app.get('/cars', async (req, res) => {
     res.json(response.rows)
   } catch (e) {
     console.log(e.message)
-  }
+  }  
 })
 
 app.get('/users', async (req, res) => {
